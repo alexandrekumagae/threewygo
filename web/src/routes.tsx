@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { createBrowserRouter } from 'react-router-dom'
 
 import App from './app'
@@ -9,6 +7,7 @@ import { CourseDetail } from './pages/course-detail'
 import { Dashboard } from './pages/admin/dashboard'
 import { CreateCourse } from './pages/admin/create-course'
 import { EditCourse } from './pages/admin/edit-course'
+import { NotFound } from './not-found'
 
 export const router = createBrowserRouter([
   {
@@ -16,7 +15,7 @@ export const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: '/:slug',
+    path: '/curso/:slug',
     element: <CourseDetail />,
   },
   {
@@ -24,11 +23,15 @@ export const router = createBrowserRouter([
     element: <Dashboard />,
   },
   {
-    path: '/admin/courses/new',
+    path: '/admin/cursos/novo',
     element: <CreateCourse />,
   },
   {
-    path: '/admin/courses/edit/:courseId',
+    path: '/admin/cursos/editar/:courseId',
     element: <EditCourse />,
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   },
 ])

@@ -31,7 +31,7 @@ export async function updateCourse (app: FastifyInstance) {
         [title, slug, description, expiration_date, courseId]
       )
 
-      if (result.rows.length === 0) {
+      if (result.rowCount === 0) {
         return reply.status(500).send({ message: "Não foi possível atualizar o curso." })
       }
 

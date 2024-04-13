@@ -6,8 +6,16 @@ Content-Type: application/json
 
 ###
 
+# @name home-list-courses
+GET http://localhost:3002/api/courses?filtro=nao-expirados
+Content-Type: application/json
+
+{}
+
+###
+
 # @name get-course
-GET http://localhost:3002/api/courses/fundamentos-e-metodologia-da-educacao-corporativa
+GET http://localhost:3002/api/courses/asasd
 Content-Type: application/json
 
 {}

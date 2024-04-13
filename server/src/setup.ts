@@ -46,11 +46,11 @@ async function setup () {
       "expiration_date": moment().add(30, 'days').format('YYYY-MM-DD'),
       "videos": [
         {
-          "path": "SampleVideo_1280x720_5mb.mp4",
+          "path": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
           "size": 5
         },
         {
-          "path": "SampleVideo_1280x720_10mb.mp4",
+          "path": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
           "size": 10
         }
       ]
@@ -62,7 +62,7 @@ async function setup () {
       "expiration_date": moment().add(60, 'days').format('YYYY-MM-DD'),
       "videos": [
         {
-          "path": "SampleVideo_1280x720_5mb.mp4",
+          "path": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
           "size": 5
         }
       ]
@@ -75,7 +75,7 @@ async function setup () {
       "expiration_date": moment().add(0, 'days').format('YYYY-MM-DD'),
       "videos": [
         {
-          "path": "SampleVideo_1280x720_10mb.mp4",
+          "path": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
           "size": 10
         }
       ]

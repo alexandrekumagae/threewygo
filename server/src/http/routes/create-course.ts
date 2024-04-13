@@ -25,7 +25,7 @@ export async function createCourse (app: FastifyInstance) {
         [title, slug, description, expiration_date]
       )
 
-      return reply.status(201).send({ id: result.rows[0] })
+      return reply.status(201).send({ course: result.rows[0] })
     } catch (err) {
       console.log('error', err)
       return reply.status(500).send( {message: "Ocorreu um erro na solicitação."} ) 

@@ -29,7 +29,7 @@ export async function getCourse (app: FastifyInstance) {
       const courseId = courseResult.rows[0].id
 
       const videoResult = await pg.query(
-        `SELECT id, path, size
+        `SELECT id, name, path, size
         FROM videos
         WHERE course_id = $1`,
         [courseId]

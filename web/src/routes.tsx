@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
     element: <CreateCourse />,
   },
   {
-    path: '/admin/cursos/editar/:courseId',
+    path: '/admin/cursos/editar/:slug',
     element: <EditCourse />,
   },
   {

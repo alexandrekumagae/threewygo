@@ -1,19 +1,29 @@
 
-import React, { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 
-import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { api } from "../../lib/api";
+
 import { HeaderAdmin } from "../../components/admin/headerAdmin";
 import { Footer } from "../../components/footer";
 
-import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Box, Button, Card, CardBody, Container, Flex, Heading, IconButton, Stat, StatLabel, StatNumber, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useDisclosure } from "@chakra-ui/react";
+import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Box, Button, Card, CardBody, Container, Flex, Heading, IconButton, Stat, StatLabel, StatNumber, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useDisclosure, useToast } from "@chakra-ui/react";
+
+import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
+
+import { CourseData } from "../../interfaces/course-data";
+import { formatIsoDateToDdMmYyyy } from "../../utils/formatIsoDateToDdMmYyyy";
 
 export function Dashboard() {
+  const toast = useToast()
+
   const { isOpen, onOpen, onClose } = useDisclosure()
   const cancelRef = useRef<HTMLButtonElement>(null);
 
   const [courseIdInConfirmation, setCourseIdInConfirmation] = useState("")
+  const [totalVideosSize, setTotalVideosSize] = useState('0')
+  const [courses, setCourses] = useState<CourseData[]>()
 
   function handleOpenDeleteCourseConfirmation(id: string) {
     onOpen()
@@ -22,8 +32,93 @@ export function Dashboard() {
   }
 
   async function handleConfirmDeleteCourse(): Promise<void> {
-    onClose()
+    try {
+      const response = await api.delete(`/courses/${courseIdInConfirmation}`)
+
+      if (response.status !== 200) {
+        toast({
+          title: 'Erro ao excluir o curso!',
+          status: 'error',
+          duration: 2000,
+          isClosable: true,
+        })
+      }
+
+      toast({
+        title: 'Curso deletado com sucesso!',
+        status: 'success',
+        duration: 2000,
+        isClosable: true,
+      })
+    } catch {
+      toast({
+        title: 'Erro ao excluir o curso!',
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+      })
+    } finally {
+      fetchData()
+
+      onClose()
+    }
   }
+
+  async function getTotalVideosSize() {
+    try {
+      const response = await api.get('/videos/total-video-size')
+      
+      if (response.status !== 200) {
+        toast({
+          title: 'Erro ao buscar o tamanho total dos vídeos!',
+          status: 'error',
+          duration: 2000,
+          isClosable: true,
+        })
+      }
+      setTotalVideosSize(response.data.totalSize)
+    } catch {
+      toast({
+        title: 'Erro ao buscar o tamanho total dos vídeos!',
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+      })
+    }
+  }
+
+  async function getCourses() {
+    try {
+      const response = await api.get('/courses')
+
+      if (response.status !== 200) {
+        toast({
+          title: 'Erro ao buscar os cursos!',
+          status: 'error',
+          duration: 2000,
+          isClosable: true,
+        })
+      }
+
+      setCourses(response.data)
+    } catch {
+      toast({
+        title: 'Erro ao buscar os cursos!',
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+      })
+    }
+  }
+
+  async function fetchData() {
+    await getTotalVideosSize()
+    await getCourses()
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   return (
     <>
@@ -37,7 +132,7 @@ export function Dashboard() {
             <CardBody>
               <Stat>
                 <StatLabel>Tamanho total ocupado pelos vídeos</StatLabel>
-                <StatNumber>10gb</StatNumber>
+                <StatNumber>{totalVideosSize} mb</StatNumber>
               </Stat>
             </CardBody>
           </Card>
@@ -57,16 +152,18 @@ export function Dashboard() {
                 </Tr>
               </Thead>
               <Tbody>
-                <Tr>
-                  <Td>Curso</Td>
-                  <Td>01/01/2000</Td>
-                  <Td>
-                    <Flex gap="2">
-                      <Link to={`/admin/cursos/editar/1`}><IconButton aria-label="Editar curso" icon={<EditIcon />} colorScheme="blue" /></Link>
-                      <IconButton aria-label="Excluir curso" icon={<DeleteIcon />} colorScheme="red" onClick={() => handleOpenDeleteCourseConfirmation("1")} />
-                    </Flex>
-                  </Td>
-                </Tr>
+                {courses && courses.map(course => (
+                  <Tr key={course.id}>
+                    <Td>{course.title}</Td>
+                    <Td>{formatIsoDateToDdMmYyyy(course.expiration_date)}</Td>
+                    <Td>
+                      <Flex gap="2">
+                        <Link to={`/admin/cursos/editar/${course.slug}`}><IconButton aria-label="Editar curso" icon={<EditIcon />} colorScheme="blue" /></Link>
+                        <IconButton aria-label="Excluir curso" icon={<DeleteIcon />} colorScheme="red" onClick={() => handleOpenDeleteCourseConfirmation(course.id)} />
+                      </Flex>
+                    </Td>
+                  </Tr>
+                ))}
               </Tbody>
             </Table>
           </TableContainer>

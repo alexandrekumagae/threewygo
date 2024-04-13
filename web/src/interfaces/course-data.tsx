@@ -2,9 +2,9 @@ import { VideoData } from "./video-data";
 
 export interface CourseData {
   id: string;
-  slug: string;
   title: string;
+  slug: string;
   description: string;
-  endDate?: string;
-  videos?: VideoData[]
+  expiration_date: string;
+  videos: VideoData[] | []
 }

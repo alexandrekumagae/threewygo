@@ -5,6 +5,7 @@ import { Card, CardBody, Stack, Heading, CardFooter, Button, Text, Flex } from "
 
 import { CalendarIcon } from "@chakra-ui/icons";
 import { truncateString } from "../utils/truncateString";
+import { formatIsoDateToDdMmYyyy } from "../utils/formatIsoDateToDdMmYyyy";
 
 interface CourseProps {
   course: CourseData
@@ -26,7 +27,7 @@ export function Course({course}: CourseProps) {
           <Stack>
             <Flex alignItems="center" gap="2" fontSize="sm" mb="2">
               <CalendarIcon />
-              <Text fontWeight="bold">Termino em 01/01/2000</Text>
+              <Text fontWeight="bold">Termino em {formatIsoDateToDdMmYyyy(course.expiration_date)}</Text>
             </Flex>
             <Button variant='threewygo'>
               Saiba Mais

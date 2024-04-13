@@ -11,9 +11,12 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { HeaderAdmin } from "../../components/admin/headerAdmin";
 import { Footer } from "../../components/footer";
 
-import { Box, Button, Container, FormControl, FormErrorMessage, FormLabel, Heading, Input, Textarea, useToast } from "@chakra-ui/react";
-import { ArrowBackIcon } from "@chakra-ui/icons";
+import { Box, Button, Container, Flex, FormControl, FormErrorMessage, FormLabel, Heading, IconButton, Input, Textarea, useToast } from "@chakra-ui/react";
+import { ArrowBackIcon, DeleteIcon } from "@chakra-ui/icons";
+
 import { CourseData } from "../../interfaces/course-data";
+import { VideoData } from "../../interfaces/video-data";
+
 import { formatIsoDateToYyyyMmDd } from "../../utils/formatIsoDateToYyyyMmDd";
 
 const formSchema = z.object({
@@ -29,7 +32,7 @@ const formSchema = z.object({
   expiration_date: z.string().min(3, {
     message: 'A data de término está inválida.',
   }),
-  videos: z.string().optional()
+  videos: z.any().optional()
 })
 
 type FormData = z.infer<typeof formSchema>
@@ -40,7 +43,8 @@ export function EditCourse() {
   const { slug } = useParams();
 
   const [courseId, setCourseId] = useState('')
-
+  const [videos, setVideos] = useState<VideoData[]>([])
+  
   const { register, handleSubmit, setValue, formState: { errors }} = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -48,15 +52,13 @@ export function EditCourse() {
       slug: '',
       description: '',
       expiration_date: '',
-      videos: '',
+      videos: [],
     },
   })
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
       const response = await api.put(`/courses/${courseId}`, data)
-
-      console.log(response)
 
       if (response.status !== 200) {
         toast({
@@ -67,14 +69,33 @@ export function EditCourse() {
         })
       }
 
+      if (data.videos) {
+        const uploadVideoResponse = await api.post(`/courses/${courseId}/videos`, data.videos, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+
+        if (uploadVideoResponse.status !== 201) {
+          toast({
+            title: 'Erro ao realizar o upload dos vídeos!',
+            status: 'error',
+            duration: 2000,
+            isClosable: true,
+          })
+        }
+      }
+
       toast({
         title: 'Curso atualizado com sucesso!',
         status: 'success',
         duration: 2000,
         isClosable: true,
       })
+
+      getCourseData()
     } catch (error) {
-      console.log('error', error)
+      // console.log('error', error)
       toast({
         title: 'Erro ao atualizar o curso!',
         status: 'error',
@@ -98,6 +119,7 @@ export function EditCourse() {
       }
 
       setCourseId(response.data.course.id)
+      setVideos(response.data.course.videos)
 
       await updateFormValues(response.data.course)
     } catch {
@@ -119,6 +141,37 @@ export function EditCourse() {
   
       resolve();
     });
+  }
+
+  async function handleDeleteVideo(id: string) {
+    try {
+      const response = await api.delete(`/videos/${id}`)
+
+      if (response.status !== 200) {
+        toast({
+          title: 'Erro ao deletar o vídeo!',
+          status: 'error',
+          duration: 2000,
+          isClosable: true,
+        })
+      }
+
+      toast({
+        title: 'Vídeo excluído com sucesso!',
+        status: 'success',
+        duration: 2000,
+        isClosable: true,
+      })
+
+      getCourseData()
+    } catch {
+      toast({
+        title: 'Erro ao deletar o vídeo!',
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+      })
+    }
   }
   
   useEffect(() => {
@@ -143,7 +196,7 @@ export function EditCourse() {
 
             <FormControl isRequired mb="6">
               <FormLabel>Slug</FormLabel>
-              <Input placeholder='Insira o Título' {...register('slug')} required />
+              <Input placeholder='Insira o Slug' {...register('slug')} required />
               {errors.slug && (
                 <FormErrorMessage>{errors.slug.message}</FormErrorMessage>
               )}
@@ -170,6 +223,18 @@ export function EditCourse() {
               <Input type="file" placeholder='Vídeos' multiple {...register('videos')} />
               {errors.videos && (
                 <FormErrorMessage>{errors.videos.message}</FormErrorMessage>
+              )}
+              {videos && (
+                <>
+                  <Heading as="h3" mt="4" mb="4" fontSize="18">Videos enviados:</Heading>
+                  <Flex gap="2" flexFlow="column">
+                    {videos && videos.map(video => (
+                      <div key={video.id}>
+                        {video.name} <IconButton aria-label='Deletar vídeo' icon={<DeleteIcon />} ml="2" onClick={() => handleDeleteVideo(video.id)} />
+                      </div>
+                    ))}
+                  </Flex>
+                </>
               )}
             </FormControl>
 

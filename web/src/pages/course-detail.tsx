@@ -10,7 +10,7 @@ import { Footer } from "../components/footer";
 import { Header } from "../components/header";
 import { CourseVideos } from "../components/course-videos";
 
-import { Box, Button, Container, Heading, Text, useToast } from "@chakra-ui/react";
+import { Box, Button, Container, Grid, Heading, Text, useToast } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 
 export function CourseDetail() {
@@ -53,17 +53,21 @@ export function CourseDetail() {
       <Header />
       {course && (
         <>
-          <Container maxW="container.md" py="12">
+          <Container maxW="container.lg" py="12">
             <Button onClick={() => history.go(-1)} variant="threewygo" mb="8" flex="" gap="2"><ArrowBackIcon /> Voltar</Button>
-            <Box mb="8">
-              <CourseVideos videos={course.videos} />
-            </Box>
-            <Box mb="8">
-              <Heading as="h1" size="xl">{course.title}</Heading>
-            </Box>
-            <Box>
-              <Text>{course.description}</Text>
-            </Box>
+            <Grid templateColumns="1fr 30%" gap="8">
+              <Box>
+                <Box mb="8">
+                  <Heading as="h1" size="xl">{course.title}</Heading>
+                </Box>
+                <Box>
+                  <Text>{course.description}</Text>
+                </Box>
+              </Box>
+              <Box mb="8">
+                <CourseVideos videos={course.videos} />
+              </Box>
+            </Grid>
           </Container>
         </>
       )} 

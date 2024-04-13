@@ -27,7 +27,7 @@ export function Course({course}: CourseProps) {
           <Stack>
             <Flex alignItems="center" gap="2" fontSize="sm" mb="2">
               <CalendarIcon />
-              <Text fontWeight="bold">Termino em {formatIsoDateToDdMmYyyy(course.expiration_date)}</Text>
+              <Text fontWeight="bold">Término em {formatIsoDateToDdMmYyyy(course.expiration_date)}</Text>
             </Flex>
             <Button variant='threewygo'>
               Saiba Mais

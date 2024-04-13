@@ -27,7 +27,7 @@ const formSchema = z.object({
   expiration_date: z.string().min(3, {
     message: 'A data de término está inválida.',
   }),
-  videos: z.string().optional()
+  videos: z.any().optional(),
 })
 
 type FormData = z.infer<typeof formSchema>
@@ -45,7 +45,7 @@ export function CreateCourse() {
       slug: '',
       description: '',
       expiration_date: '',
-      videos: '',
+      videos: [],
     },
   })
 
@@ -62,12 +62,33 @@ export function CreateCourse() {
         })
       }
 
+      if (data.videos && response.data.course) {
+        const uploadVideoResponse = await api.post(`/courses/${response.data.course.id}/videos`, data.videos, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+
+        if (uploadVideoResponse.status !== 201) {
+          toast({
+            title: 'Erro ao realizar o upload dos vídeos!',
+            status: 'error',
+            duration: 2000,
+            isClosable: true,
+          })
+        }
+      }
+
       toast({
         title: 'Curso criado com sucesso!',
         status: 'success',
         duration: 2000,
         isClosable: true,
       })
+
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      navigate('/admin')
     } catch (error) {
       toast({
         title: 'Erro ao cadastrar o curso!',
@@ -75,10 +96,6 @@ export function CreateCourse() {
         duration: 2000,
         isClosable: true,
       })
-    } finally {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      navigate('/admin')      
     }
   }
 
@@ -105,7 +122,7 @@ export function CreateCourse() {
 
             <FormControl isRequired mb="6">
               <FormLabel>Slug</FormLabel>
-              <Input placeholder='Insira o Título' {...register('slug')} value={slug} required />
+              <Input placeholder='Insira o Slug' {...register('slug')} value={slug} required />
               {errors.slug && (
                 <FormErrorMessage>{errors.slug.message}</FormErrorMessage>
               )}
@@ -130,8 +147,8 @@ export function CreateCourse() {
             <FormControl mb="6">
               <FormLabel>Vídeos</FormLabel>
               <Input type="file" placeholder='Vídeos' multiple {...register('videos')} />
-              {errors.file && (
-                <FormErrorMessage>{errors.file.message}</FormErrorMessage>
+              {errors.videos && (
+                <FormErrorMessage>{errors.videos.message}</FormErrorMessage>
               )}
             </FormControl>
 

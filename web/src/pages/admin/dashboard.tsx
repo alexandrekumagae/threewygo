@@ -132,7 +132,7 @@ export function Dashboard() {
             <CardBody>
               <Stat>
                 <StatLabel>Tamanho total ocupado pelos vídeos</StatLabel>
-                <StatNumber>{totalVideosSize} mb</StatNumber>
+                <StatNumber>{totalVideosSize ? totalVideosSize : '0'} mb</StatNumber>
               </Stat>
             </CardBody>
           </Card>

@@ -1,0 +1,27 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch --env-file=.env ./src/http/server.ts",
+    "setup": "tsx ./src/setup.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@fastify/cors": "^9.0.1",
+    "@fastify/multipart": "^8.2.0",
+    "@types/pg": "^8.11.5",
+    "fastify": "^4.26.2",
+    "moment": "^2.30.1",
+    "pg": "^8.11.5",
+    "zod": "^3.22.4"
+  }
+}

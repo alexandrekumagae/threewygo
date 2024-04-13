@@ -1,0 +1,29 @@
+# @name list-courses
+GET http://localhost:3002/api/courses
+Content-Type: application/json
+
+{}
+
+###
+
+# @name get-course
+GET http://localhost:3002/api/courses/fundamentos-e-metodologia-da-educacao-corporativa
+Content-Type: application/json
+
+{}
+
+###
+
+# @name delete-course
+DELETE http://localhost:3002/api/courses/1
+Content-Type: application/json
+
+{}
+
+###
+
+# @name get-total-video-size
+GET http://localhost:3002/api/videos/total-video-size
+Content-Type: application/json
+
+{}

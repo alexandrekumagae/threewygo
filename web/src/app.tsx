@@ -54,10 +54,10 @@ function App() {
   return (
     <>
       <Header />
-      <Box bgImage={bgBannerHome} bgSize="cover" bgPosition="center" minH="400px">
+      <Box bgColor="#EAF3F9" minH="300px">
         <Container maxW="container.lg">
           <Stack maxWidth="xl" pt="12" mb="4">
-            <Heading as="h1" size="xl">Threewygo LMS</Heading>
+            <Heading as="h1" size="xl" color="threewygoPurple">Threewygo LMS</Heading>
             <Heading as="h2" size="lg" fontWeight="normal">A melhor plataforma de cursos de treinamento do mercado.</Heading>
           </Stack>
           <Button variant="threewygo" onClick={() => scrollToSection('cursos')}>Ver cursos</Button>

@@ -8,7 +8,6 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { HeaderAdmin } from "../../components/admin/headerAdmin";
 import { Footer } from "../../components/footer";
 
 import { Box, Button, Container, Flex, FormControl, FormErrorMessage, FormLabel, Heading, IconButton, Input, Textarea, useToast } from "@chakra-ui/react";
@@ -18,6 +17,7 @@ import { CourseData } from "../../interfaces/course-data";
 import { VideoData } from "../../interfaces/video-data";
 
 import { formatIsoDateToYyyyMmDd } from "../../utils/formatIsoDateToYyyyMmDd";
+import { Header } from "../../components/header";
 
 const formSchema = z.object({
   title: z.string().min(3, {
@@ -180,8 +180,8 @@ export function EditCourse() {
 
   return (
     <>
-      <HeaderAdmin />
-      <Container maxW="container.lg" py="12">
+      <Header />
+      <Container maxW="container.lg" py={{ base: "8", md: "12" }}>
         <Box>
           <Heading as="h1" mb="2">Editar curso</Heading>
           <Button onClick={() => history.go(-1)} variant="threewygo" mb="8" flex="" gap="2"><ArrowBackIcon /> Voltar</Button>

@@ -10,7 +10,7 @@ import { Footer } from "../components/footer";
 import { Header } from "../components/header";
 import { CourseVideos } from "../components/course-videos";
 
-import { Box, Button, Container, Grid, Heading, Text, useToast } from "@chakra-ui/react";
+import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Container, Grid, Heading, Text, useToast } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 
 export function CourseDetail() {
@@ -53,10 +53,18 @@ export function CourseDetail() {
       <Header />
       {course && (
         <>
-          <Container maxW="container.lg" py="12">
-            <Button onClick={() => history.go(-1)} variant="threewygo" mb="8" flex="" gap="2"><ArrowBackIcon /> Voltar</Button>
-            <Grid templateColumns="1fr 30%" gap="8">
-              <Box>
+          <Container maxW="container.lg" py="6" pb={{ base: "8", md: "12" }}>
+            <Grid templateColumns={{ base: "1fr", lg: "1fr 35%" }} gap="8">
+              <Box order={{ base: 2, lg: "unset" }}>
+                <Breadcrumb mb="4">
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href='/'>Home</BreadcrumbLink>
+                  </BreadcrumbItem>
+
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href='#'>{course.title}</BreadcrumbLink>
+                  </BreadcrumbItem>
+                </Breadcrumb>
                 <Box mb="8">
                   <Heading as="h1" size="xl">{course.title}</Heading>
                 </Box>
@@ -64,7 +72,7 @@ export function CourseDetail() {
                   <Text>{course.description}</Text>
                 </Box>
               </Box>
-              <Box mb="8">
+              <Box mb={{ base: "4", md: "8" }} order={{ base: 1, lg: "unset" }}>
                 <CourseVideos videos={course.videos} />
               </Box>
             </Grid>

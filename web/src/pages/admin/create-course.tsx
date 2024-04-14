@@ -13,6 +13,7 @@ import { Footer } from "../../components/footer";
 
 import { Box, Button, Container, FormControl, FormErrorMessage, FormLabel, Heading, Input, Textarea, useToast } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+import { Header } from "../../components/header";
 
 const formSchema = z.object({
   title: z.string().min(3, {
@@ -106,8 +107,8 @@ export function CreateCourse() {
 
   return (
     <>
-      <HeaderAdmin />
-      <Container maxW="container.lg" py="12">
+      <Header />
+      <Container maxW="container.lg" py={{ base: "8", md: "12" }}>
         <Box>
           <Heading as="h1" mb="2">Cadastro de novo curso</Heading>
           <Button onClick={() => history.go(-1)} variant="threewygo" mb="8" flex="" gap="2"><ArrowBackIcon /> Voltar</Button>
@@ -145,8 +146,8 @@ export function CreateCourse() {
             </FormControl>
             
             <FormControl mb="6">
-              <FormLabel>Vídeos</FormLabel>
-              <Input type="file" placeholder='Vídeos' multiple {...register('videos')} />
+              <FormLabel>Vídeos (somente .mp4)</FormLabel>
+              <Input type="file" placeholder='Vídeos' multiple {...register('videos')} accept=".mp4" />
               {errors.videos && (
                 <FormErrorMessage>{errors.videos.message}</FormErrorMessage>
               )}

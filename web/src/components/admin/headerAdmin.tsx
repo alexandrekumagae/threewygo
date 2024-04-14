@@ -7,7 +7,7 @@ export function HeaderAdmin() {
   return (
     <>
       <Container maxW="container.lg">
-        <Flex py="4">
+        <Flex py="4" flexFlow={{ base: "wrap" }} gap="3">
           <Box>
             <Link to="/">
               <Heading color="threewygoPurple">Threewygo</Heading>

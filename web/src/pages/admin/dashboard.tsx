@@ -123,7 +123,7 @@ export function Dashboard() {
   return (
     <>
       <HeaderAdmin />
-      <Container maxW="container.lg" py="12">
+      <Container maxW="container.lg" py={{ base: "8", md: "12" }}>
         <Box mb="8">
           <Heading as="h1">Dashboard</Heading>
         </Box>

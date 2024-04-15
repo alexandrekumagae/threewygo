@@ -43,6 +43,7 @@ O projeto está organizado em duas partes principais:
 ## Pré-requisitos
 
 - Node.js versão 20.10.0 ou superior.
+- Docker;
 
 ## Configuração e Execução
 

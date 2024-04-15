@@ -8,12 +8,11 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { HeaderAdmin } from "../../components/admin/headerAdmin";
+import { Header } from "../../components/header";
 import { Footer } from "../../components/footer";
 
 import { Box, Button, Container, FormControl, FormErrorMessage, FormLabel, Heading, Input, Textarea, useToast } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
-import { Header } from "../../components/header";
 
 const formSchema = z.object({
   title: z.string().min(3, {

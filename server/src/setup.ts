@@ -1,13 +1,13 @@
 import { pg } from "./lib/postgres";
 
-import moment, { name } from "moment";
+import moment from "moment";
 
 async function setup () {
   await pg.connect()
 
-  await pg.query(
-    `ALTER TABLE videos DROP CONSTRAINT videos_course_id_fkey`
-  )
+  // await pg.query(
+  //   `ALTER TABLE videos DROP CONSTRAINT videos_course_id_fkey`
+  // )
 
   await pg.query(
     `DROP TABLE IF EXISTS courses`

@@ -25,13 +25,14 @@ Este projeto consiste em uma aplicação web para listar cursos disponíveis, pe
 - React Hook Form;
 - Zod;
 - Jest + React Testing Library;
-- Docker;
 
 ### API:
 - Node;
 - Fastify;
 - TypeScript;
+- Jest;
 - Zod;
+- Docker;
 
 ## Estrutura do Projeto
 

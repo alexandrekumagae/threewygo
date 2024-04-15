@@ -5,20 +5,14 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch --env-file=.env ./src/http/server.ts",
-    "setup": "tsx ./src/setup.ts",
+    "setup": "SHOW_SETUP_LOG=true tsx ./src/setup.ts",
     "build": "rimraf dist && tsup src",
-    "start": "NODE_ENV=production node dist/http/server.js"
+    "start": "NODE_ENV=production node dist/http/server.js",
+    "test": "jest --watchAll"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^20.12.7",
-    "rimraf": "^5.0.5",
-    "tsup": "^8.0.2",
-    "tsx": "^4.7.2",
-    "typescript": "^5.4.5"
-  },
   "dependencies": {
     "@fastify/cors": "^9.0.1",
     "@fastify/multipart": "^8.2.0",
@@ -28,5 +22,21 @@
     "moment": "^2.30.1",
     "pg": "^8.11.5",
     "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.12.7",
+    "@types/supertest": "^6.0.2",
+    "jest": "^29.7.0",
+    "rimraf": "^5.0.5",
+    "supertest": "^6.3.4",
+    "ts-jest": "^29.1.2",
+    "tsup": "^8.0.2",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.5"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   }
 }

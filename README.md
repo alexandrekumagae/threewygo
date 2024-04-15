@@ -19,19 +19,19 @@ Este projeto consiste em uma aplicação web para listar cursos disponíveis, pe
 ## Ferramentas Utilizadas
 
 ### SPA:
-- React
-- TypeScript
-- Chakra UI
-- React Hook Form
-- Zod
-- Jest + React Testing Library
-- Docker
+- React;
+- TypeScript;
+- Chakra UI;
+- React Hook Form;
+- Zod;
+- Jest + React Testing Library;
+- Docker;
 
 ### API:
-- Node
-- Fastify
-- TypeScript
-- Zod
+- Node;
+- Fastify;
+- TypeScript;
+- Zod;
 
 ## Estrutura do Projeto
 
@@ -43,7 +43,7 @@ O projeto está organizado em duas partes principais:
 ## Pré-requisitos
 
 - Node.js versão 20.10.0 ou superior.
-- Docker;
+- Docker.
 
 ## Configuração e Execução
 

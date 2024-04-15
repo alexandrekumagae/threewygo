@@ -7,7 +7,7 @@ import { CourseDetail } from './pages/course-detail'
 import { Dashboard } from './pages/admin/dashboard'
 import { CreateCourse } from './pages/admin/create-course'
 import { EditCourse } from './pages/admin/edit-course'
-import { NotFound } from './not-found'
+import { NotFound } from './pages/not-found'
 
 export const router = createBrowserRouter([
   {

@@ -94,8 +94,7 @@ export function EditCourse() {
       })
 
       getCourseData()
-    } catch (error) {
-      // console.log('error', error)
+    } catch {
       toast({
         title: 'Erro ao atualizar o curso!',
         status: 'error',

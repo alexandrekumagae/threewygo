@@ -39,7 +39,7 @@ export function CourseVideos({videos}: CourseVideoProps) {
     <>
       {videos.length > 0 && (
         <>
-          <Box key={videos[0].id} onClick={() => handleVideoClick(videos[0])} cursor="pointer" maxWidth="100%">
+          <Box key={videos[0].id} title={videos[0].name} onClick={() => handleVideoClick(videos[0])} cursor="pointer" maxWidth="100%">
             <Box pointerEvents="none" position="relative">
               <Box display="flex" justifyContent="center" alignItems="center" position="absolute" height="100%" width="100%" zIndex="1" background="rgba(0, 0, 0, .3)">
                 <Box backgroundColor="white" padding="3" borderRadius="100%" display="flex" justifyContent="center" alignItems="center">

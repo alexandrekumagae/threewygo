@@ -54,13 +54,13 @@ O projeto está organizado em duas partes principais:
 3. Execute o comando `docker-compose up -d` para iniciar os serviços necessários.
 4. Aguarde até que todos os contêineres estejam prontos e executando.
 5. Execute `npm run setup` para configurar o ambiente.
-6. Por fim, execute `npm run start` para iniciar o servidor na porta localhost:3002.
+6. Por fim, execute `npm run dev` para iniciar o servidor na porta http://localhost:3002.
 
 ### Para rodar a aplicação web:
 
 1. Navegue até o diretório /web.
 2. Execute `npm install` para instalar as dependências.
-3. Execute `npm run dev` para iniciar o servidor de desenvolvimento.
+3. Execute `npm run dev` para iniciar o servidor de desenvolvimento no endereco: http://localhost:5173.
 
 ### Para rodar os testes:
 

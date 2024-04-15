@@ -86,7 +86,7 @@ async function setup () {
       "title": "Educação Corporativa: desenvolvimento e gestão para resultados",
       "slug": "educacao-corporativa-desenvolvimento-e-gestao-para-resultados",
       "description": "No cenário globalizado, as organizações governamentais têm percebido os servidores públicos como seu principal ativo, o que faz com que a educação corporativa assuma um papel essencial no desenvolvimento e aprimoramento das competências profissionais. Neste curso, aprenda diferentes métodos e estratégias de ensino aplicados à aprendizagem corporativa e contribua para o crescimento organizacional.",
-      "expiration_date": moment().add(0, 'days').format('YYYY-MM-DD'),
+      "expiration_date": moment().add(10, 'days').format('YYYY-MM-DD'),
       "videos": [
         {
           "name": "SampleVideo_1280x720_2mb.mp4",
@@ -102,6 +102,25 @@ async function setup () {
           "name": "SampleVideo_1280x720_2mb.mp4",
           "path": "SampleVideo_1280x720_2mb.mp4",
           "size": 2,
+        },
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Educação corporativa, desenvolvimento e reskilling",
+      "slug": "educacao-corporativa-desenvolvimento-e-reskilling",
+      "description": "O curso apresenta o estudo sobre a educação corporativa, com foco nas questões de desenvolvimento pessoal e profissional e reskilling, apresentação de metodologias ativas, como Problem-Based Learning e Project-Based Learning, e discussões sobre empreendedorismo social e empreendedorismo pessoal relacionados ao desenvolvimento pessoal e profissional. Com Kelly Palmer, Mestre em Aprendizagem de Adultos, ex-diretora de aprendizagem do LinkedIn e co-autora do livro 'The Expertise Economy' e Alexandre Anselmo Guilherme, professor PUCRS.",
+      "expiration_date": moment().add(0, 'days').format('YYYY-MM-DD'),
+      "videos": [
+        {
+          "name": "SampleVideo_1280x720_2mb.mp4",
+          "path": "SampleVideo_1280x720_2mb.mp4",
+          "size": 2,
+        },
+        {
+          "name": "SampleVideo_1280x720_5mb.mp4",
+          "path": "SampleVideo_1280x720_5mb.mp4",
+          "size": 4
         },
       ]
     }

@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 
 import { VideoData } from "../interfaces/video-data"
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { VITE_VIDEO_PATH } from "../config";
 
 import { AspectRatio, Box, Text, Grid, Modal, ModalBody, ModalContent, ModalOverlay, Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, ModalCloseButton } from "@chakra-ui/react";
+
 import { TriangleDownIcon } from "@chakra-ui/icons";
 
 interface CourseVideoProps {
@@ -18,7 +18,6 @@ export function CourseVideos({videos}: CourseVideoProps) {
 
   useEffect(() => {
     if (isModalOpen && selectedVideo) {
-      // Play the video when the modal is opened
       const videoElement = document.getElementById(`video-${selectedVideo.id}`) as HTMLVideoElement | null;
       if (videoElement) {
         videoElement.play();
@@ -49,7 +48,7 @@ export function CourseVideos({videos}: CourseVideoProps) {
               </Box>
               <AspectRatio maxW='100%' ratio={16/9}>
                 <video width="100%" height="auto" muted={true} playsInline={true} style={{ maxHeight: "320px", maxWidth: "100vw" }}>
-                  <source src={`${import.meta.env.VITE_VIDEO_PATH}/${videos[0].path}`} type="video/mp4" />
+                  <source src={`${VITE_VIDEO_PATH}/${videos[0].path}`} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               </AspectRatio>
@@ -78,7 +77,7 @@ export function CourseVideos({videos}: CourseVideoProps) {
                           </Box>
                           <AspectRatio maxW='100%' ratio={16/9}>
                             <video controls={false} width="100%" height="auto" muted={true} playsInline={true} style={{ maxHeight: "320px", maxWidth: "100vw" }}>
-                              <source src={`${import.meta.env.VITE_VIDEO_PATH}/${video.path}`} type="video/mp4" />
+                              <source src={`${VITE_VIDEO_PATH}/${video.path}`} type="video/mp4" />
                               Your browser does not support the video tag.
                             </video>
                           </AspectRatio>
@@ -99,7 +98,7 @@ export function CourseVideos({videos}: CourseVideoProps) {
                 {selectedVideo && (
                   <AspectRatio>
                     <video id={`modal-video-${selectedVideo.id}`} controls autoPlay={true} style={{ width: '100%' }}>
-                      <source src={`${import.meta.env.VITE_VIDEO_PATH}/${selectedVideo.path}`}  type="video/mp4" />
+                      <source src={`${VITE_VIDEO_PATH}/${selectedVideo.path}`}  type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
                   </AspectRatio>

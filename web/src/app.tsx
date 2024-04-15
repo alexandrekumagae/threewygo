@@ -1,19 +1,15 @@
 import { useEffect, useState } from "react"
 
-import { Link } from "react-router-dom"
+import { api } from "./lib/api"
+import { scrollToSection } from "./utils/scrollToSection"
 
 import { CourseData } from "./interfaces/course-data"
 
 import { Header } from "./components/header"
 import { Footer } from "./components/footer"
-
 import { Course } from "./components/course"
 
 import { Box, Button, Container, Grid, Heading, Stack, useToast } from "@chakra-ui/react"
-
-import bgBannerHome from "/img/bg-banner-home.png"
-import { api } from "./lib/api"
-import { scrollToSection } from "./utils/scrollToSection"
 
 function App() {
   const toast = useToast()
@@ -45,7 +41,6 @@ function App() {
       setCourses([])
     }
   }
-  
 
   useEffect(() => {
     getCourses()

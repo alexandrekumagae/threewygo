@@ -10,8 +10,7 @@ import { Footer } from "../components/footer";
 import { Header } from "../components/header";
 import { CourseVideos } from "../components/course-videos";
 
-import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Container, Grid, Heading, Text, useToast } from "@chakra-ui/react";
-import { ArrowBackIcon } from "@chakra-ui/icons";
+import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Container, Grid, Heading, Text, useToast } from "@chakra-ui/react";
 
 export function CourseDetail() {
   const toast = useToast()

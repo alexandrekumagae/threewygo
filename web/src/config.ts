@@ -1,0 +1,1 @@
+export const VITE_VIDEO_PATH = "http://192.168.15.99:3002/public/videos"

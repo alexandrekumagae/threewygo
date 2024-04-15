@@ -61,6 +61,18 @@ O projeto está organizado em duas partes principais:
 2. Execute `npm install` para instalar as dependências.
 3. Execute `npm run dev` para iniciar o servidor de desenvolvimento.
 
+### Para rodar os testes:
+
+#### No servidor:
+
+1. Navegue até o diretório /server.
+2. Execute `npm run test` para rodar os testes unitários.
+
+#### Na aplicação web:
+
+1. Navegue até o diretório /web.
+2. Execute `npm run test` para rodar os testes unitários.
+
 ## Autor
 
 Este projeto foi desenvolvido por Alexandre Kumagae.

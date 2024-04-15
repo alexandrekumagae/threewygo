@@ -3,5 +3,5 @@ node_modules
 public/videos/*
 !public/videos/SampleVideo_1280x720_2mb.mp4
 !public/videos/SampleVideo_1280x720_5mb.mp4
-
+dist/
 .env

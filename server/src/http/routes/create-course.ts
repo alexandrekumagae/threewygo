@@ -27,7 +27,6 @@ export async function createCourse (app: FastifyInstance) {
 
       return reply.status(201).send({ course: result.rows[0] })
     } catch (err) {
-      console.log('error', err)
       return reply.status(500).send( {message: "Ocorreu um erro na solicitação."} ) 
     } finally {
       await client.release();  

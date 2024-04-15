@@ -1,6 +1,6 @@
 import path from 'node:path'
 
-import fastify from 'fastify'
+import fastify, { FastifyInstance } from 'fastify'
 import cors from '@fastify/cors'
 import multipart from '@fastify/multipart'
 
@@ -51,4 +51,6 @@ app.listen({ port: 3002, host: '0.0.0.0' }).then(() => {
   console.log('HTTP server is running on http://localhost:3002 🔥.')
 })
 
-export default app
+const server: FastifyInstance = app;
+
+export { server };

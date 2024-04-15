@@ -19,7 +19,6 @@ export async function getTotalVideoSizes (app: FastifyInstance) {
 
       reply.status(200).send({ totalSize });      
     } catch (err) {
-      console.log('error', err)
       return reply.status(500).send({ message: "Ocorreu um erro na solicitação." }) 
     } finally {
       await client.release();  

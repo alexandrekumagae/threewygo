@@ -1,4 +1,4 @@
-import { useFetchCourses } from "./hooks/useFetchCourses"
+import { useFetchCoursesNonExpired } from "./hooks/useFetchCoursesNonExpired"
 
 import { scrollToSection } from "./utils/scrollToSection"
 
@@ -9,7 +9,7 @@ import { Course } from "./components/course"
 import { Box, Button, Container, Grid, Heading, Stack } from "@chakra-ui/react"
 
 function App() {
-  const { courses } = useFetchCourses();
+  const { courses } = useFetchCoursesNonExpired();
 
   return (
     <>

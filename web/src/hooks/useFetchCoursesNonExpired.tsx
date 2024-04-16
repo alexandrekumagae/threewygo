@@ -6,13 +6,13 @@ import { CourseData } from "../interfaces/course-data";
 
 import { useToast } from "@chakra-ui/react";
 
-export function useFetchCourses() {
+export function useFetchCoursesNonExpired() {
   const toast = useToast();
   const [courses, setCourses] = useState<CourseData[]>([]);
 
   async function fetchCourses(): Promise<void> {
     try {
-      const response = await api.get('/courses');
+      const response = await api.get('/courses?filtro=nao-expirados');
 
       if (response.status !== 200) {
         toast({

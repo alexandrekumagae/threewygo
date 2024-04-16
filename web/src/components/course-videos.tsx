@@ -4,8 +4,7 @@ import { VideoData } from "../interfaces/video-data"
 
 import { VITE_VIDEO_PATH } from "../config";
 
-import { AspectRatio, Box, Text, Grid, Modal, ModalBody, ModalContent, ModalOverlay, Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, ModalCloseButton } from "@chakra-ui/react";
-
+import { AspectRatio, Box, Text, Grid, Modal, ModalBody, ModalContent, ModalOverlay, Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, ModalCloseButton, Heading } from "@chakra-ui/react";
 import { TriangleDownIcon } from "@chakra-ui/icons";
 
 interface CourseVideoProps {
@@ -54,19 +53,22 @@ export function CourseVideos({videos}: CourseVideoProps) {
               </AspectRatio>
             </Box>
           </Box>
+
           {videos.length > 1 && (
             <Accordion allowToggle mt="4">
               <AccordionItem>
-                <h2>
+                <Heading as="h2">
                   <AccordionButton>
                     <Box as='span' flex='1' textAlign='left'>
                       Ver mais vídeos
                     </Box>
                     <AccordionIcon />
                   </AccordionButton>
-                </h2>
+                </Heading>
+
                 <AccordionPanel pb={4}>
                   <Grid pb="8" gap="4">
+                    
                     {videos.slice(1).map(video => (
                       <Box key={video.id} onClick={() => handleVideoClick(video)} cursor="pointer" maxWidth="100%">
                         <Box pointerEvents="none" position="relative">
@@ -75,6 +77,7 @@ export function CourseVideos({videos}: CourseVideoProps) {
                               <TriangleDownIcon position="relative" color="black" transform="rotate(270deg)" height="8" width="8" marginRight="-3px" />
                             </Box>
                           </Box>
+
                           <AspectRatio maxW='100%' ratio={16/9}>
                             <video controls={false} width="100%" height="auto" muted={true} playsInline={true} style={{ maxHeight: "320px", maxWidth: "100vw" }}>
                               <source src={`${VITE_VIDEO_PATH}/${video.path}`} type="video/mp4" />
@@ -82,14 +85,17 @@ export function CourseVideos({videos}: CourseVideoProps) {
                             </video>
                           </AspectRatio>
                         </Box>
+                        
                         <Text fontSize='sm'>{video.name}</Text>
                       </Box>
                     ))}
+
                   </Grid>
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>
           )}
+
           <Modal blockScrollOnMount={false} isOpen={isModalOpen} onClose={handleCloseModal} isCentered>
             <ModalOverlay />
             <ModalContent>

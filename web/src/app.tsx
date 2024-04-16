@@ -1,54 +1,20 @@
-import { useEffect, useState } from "react"
+import { useFetchCourses } from "./hooks/useFetchCourses"
 
-import { api } from "./lib/api"
 import { scrollToSection } from "./utils/scrollToSection"
-
-import { CourseData } from "./interfaces/course-data"
 
 import { Header } from "./components/header"
 import { Footer } from "./components/footer"
 import { Course } from "./components/course"
 
-import { Box, Button, Container, Grid, Heading, Stack, useToast } from "@chakra-ui/react"
+import { Box, Button, Container, Grid, Heading, Stack } from "@chakra-ui/react"
 
 function App() {
-  const toast = useToast()
-
-  const [courses, setCourses] = useState<CourseData[]>([])
-
-  async function getCourses(): Promise<void> {
-    try {
-      const response = await api.get('/courses?filtro=nao-expirados')
-
-      if (response.status !== 200) {
-        toast({
-          title: 'Erro ao listar os cursos!',
-          status: 'error',
-          duration: 2000,
-          isClosable: true,
-        })
-      }
-
-      setCourses(response.data)
-    } catch (error) {
-      toast({
-        title: 'Erro ao listar os cursos!',
-        status: 'error',
-        duration: 2000,
-        isClosable: true,
-      })
-      
-      setCourses([])
-    }
-  }
-
-  useEffect(() => {
-    getCourses()
-  }, [])
+  const { courses } = useFetchCourses();
 
   return (
     <>
       <Header />
+
       <Box bgColor="#EAF3F9" minH="300px">
         <Container maxW="container.lg">
           <Stack maxWidth="xl" pt="12" mb="4">
@@ -58,6 +24,7 @@ function App() {
           <Button variant="threewygo" onClick={() => scrollToSection('cursos')}>Ver cursos</Button>
         </Container>
       </Box>
+
       <Box id="cursos" py="12">
         <Container maxW="container.lg">
           <Heading as="h3" size="lg" mb="8">Cursos</Heading>
@@ -70,6 +37,7 @@ function App() {
           </Grid>
         </Container>
       </Box>
+      
       <Footer />
     </>
   )

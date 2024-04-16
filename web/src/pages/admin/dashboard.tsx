@@ -1,29 +1,31 @@
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
 import { Link } from "react-router-dom";
 
 import { api } from "../../lib/api";
 
-import { HeaderAdmin } from "../../components/admin/headerAdmin";
-import { Footer } from "../../components/footer";
+import { useFetchTotalVideosSize } from "../../hooks/useFetchTotalVideoSize";
+import { useFetchCourses } from "../../hooks/useFetchCourses";
 
-import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Box, Button, Card, CardBody, Container, Flex, Heading, IconButton, Stat, StatLabel, StatNumber, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useDisclosure, useToast } from "@chakra-ui/react";
-
-import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
-
-import { CourseData } from "../../interfaces/course-data";
 import { formatIsoDateToDdMmYyyy } from "../../utils/formatIsoDateToDdMmYyyy";
+
+import { HeaderAdmin } from "../../components/admin/header-admin";
+import { Footer } from "../../components/footer";
+import { ModalCourseDeleteConfirmation } from "../../components/admin/modal-course-delete-confirmation";
+
+import { Box, Button, Card, CardBody, Container, Flex, Heading, IconButton, Stat, StatLabel, StatNumber, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useDisclosure, useToast } from "@chakra-ui/react";
+import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 
 export function Dashboard() {
   const toast = useToast()
-
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const cancelRef = useRef<HTMLButtonElement>(null);
+  
+  const { courses, fetchCourses } = useFetchCourses();
+  const { totalVideosSize, fetchTotalVideosSize } = useFetchTotalVideosSize();
 
   const [courseIdInConfirmation, setCourseIdInConfirmation] = useState("")
-  const [totalVideosSize, setTotalVideosSize] = useState('0')
-  const [courses, setCourses] = useState<CourseData[]>()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const cancelRef = useRef<HTMLButtonElement>(null);
 
   function handleOpenDeleteCourseConfirmation(id: string) {
     onOpen()
@@ -58,75 +60,22 @@ export function Dashboard() {
         isClosable: true,
       })
     } finally {
-      fetchData()
+      fetchCourses()
+      fetchTotalVideosSize();
 
       onClose()
     }
   }
 
-  async function getTotalVideosSize() {
-    try {
-      const response = await api.get('/videos/total-video-size')
-      
-      if (response.status !== 200) {
-        toast({
-          title: 'Erro ao buscar o tamanho total dos vídeos!',
-          status: 'error',
-          duration: 2000,
-          isClosable: true,
-        })
-      }
-      setTotalVideosSize(response.data.totalSize)
-    } catch {
-      toast({
-        title: 'Erro ao buscar o tamanho total dos vídeos!',
-        status: 'error',
-        duration: 2000,
-        isClosable: true,
-      })
-    }
-  }
-
-  async function getCourses() {
-    try {
-      const response = await api.get('/courses')
-
-      if (response.status !== 200) {
-        toast({
-          title: 'Erro ao buscar os cursos!',
-          status: 'error',
-          duration: 2000,
-          isClosable: true,
-        })
-      }
-
-      setCourses(response.data)
-    } catch {
-      toast({
-        title: 'Erro ao buscar os cursos!',
-        status: 'error',
-        duration: 2000,
-        isClosable: true,
-      })
-    }
-  }
-
-  async function fetchData() {
-    await getTotalVideosSize()
-    await getCourses()
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [])
-
   return (
     <>
       <HeaderAdmin />
+
       <Container maxW="container.lg" py={{ base: "8", md: "12" }}>
         <Box mb="8">
           <Heading as="h1">Dashboard</Heading>
         </Box>
+
         <Box mb="8">
           <Card maxW="sm">
             <CardBody>
@@ -137,11 +86,13 @@ export function Dashboard() {
             </CardBody>
           </Card>
         </Box>
+
         <Box pb="8">
           <Flex gap="4">
             <Heading as="h3" mb="2">Cursos</Heading>
             <Link to="/admin/cursos/novo"><Button flex="" gap="2" mb="8"><AddIcon />Adicionar novo curso</Button></Link>
           </Flex>
+
           <TableContainer>
             <Table variant='simple'>
               <Thead>
@@ -151,6 +102,7 @@ export function Dashboard() {
                   <Th width="10%">Ações</Th>
                 </Tr>
               </Thead>
+
               <Tbody>
                 {courses && courses.map(course => (
                   <Tr key={course.id}>
@@ -169,32 +121,9 @@ export function Dashboard() {
           </TableContainer>
         </Box>
       </Container>
-      <AlertDialog
-        isOpen={isOpen}
-        leastDestructiveRef={cancelRef}
-        onClose={onClose}
-      >
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader fontSize='lg' fontWeight='bold'>
-              Excluir curso
-            </AlertDialogHeader>
 
-            <AlertDialogBody>
-              Deseja realmente excluir esse curso?
-            </AlertDialogBody>
+      <ModalCourseDeleteConfirmation isOpen={isOpen} cancelRef={cancelRef} onClose={onClose} handleConfirmDeleteCourse={handleConfirmDeleteCourse} />
 
-            <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
-                Cancelar
-              </Button>
-              <Button colorScheme='red' onClick={() => handleConfirmDeleteCourse()} ml={3}>
-                Excluir
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </AlertDialog>
       <Footer />
     </>
   )

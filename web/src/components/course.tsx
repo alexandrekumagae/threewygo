@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+
 import { CourseData } from "../interfaces/course-data";
 
-import { Card, CardBody, Stack, Heading, CardFooter, Button, Text, Flex } from "@chakra-ui/react";
-
-import { CalendarIcon } from "@chakra-ui/icons";
 import { truncateString } from "../utils/truncateString";
 import { formatIsoDateToDdMmYyyy } from "../utils/formatIsoDateToDdMmYyyy";
+
+import { Card, CardBody, Stack, Heading, CardFooter, Button, Text, Flex } from "@chakra-ui/react";
+import { CalendarIcon } from "@chakra-ui/icons";
 
 interface CourseProps {
   course: CourseData
@@ -23,6 +24,7 @@ export function Course({course}: CourseProps) {
             </Text>
           </Stack>
         </CardBody>
+        
         <CardFooter pt="0">
           <Stack>
             <Flex alignItems="center" gap="2" fontSize="sm" mb="2">

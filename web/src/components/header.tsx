@@ -12,7 +12,9 @@ export function Header() {
               <Heading color="threewygoPurple">Threewygo</Heading>
             </Link>
           </Box>
+          
           <Spacer />
+
           <Box>
             <Link to="/admin" title="Link para dashboard">
               <Button variant="threewygo">Dashboard</Button>

@@ -13,7 +13,9 @@ export function HeaderAdmin() {
               <Heading color="threewygoPurple">Threewygo</Heading>
             </Link>
           </Box>
+          
           <Spacer />
+          
           <Box>
             <Link to="/">
               <Button variant="threewygo" flex="" gap="2"><ArrowBackIcon /> Voltar para o site</Button>

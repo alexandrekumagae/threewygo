@@ -8,16 +8,16 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { Footer } from "../../components/footer";
-
-import { Box, Button, Container, Flex, FormControl, FormErrorMessage, FormLabel, Heading, IconButton, Input, Textarea, useToast } from "@chakra-ui/react";
-import { ArrowBackIcon, DeleteIcon } from "@chakra-ui/icons";
-
 import { CourseData } from "../../interfaces/course-data";
 import { VideoData } from "../../interfaces/video-data";
 
 import { formatIsoDateToYyyyMmDd } from "../../utils/formatIsoDateToYyyyMmDd";
+
 import { Header } from "../../components/header";
+import { Footer } from "../../components/footer";
+
+import { Box, Button, Container, Flex, FormControl, FormErrorMessage, FormLabel, Heading, IconButton, Input, Textarea, useToast } from "@chakra-ui/react";
+import { ArrowBackIcon, DeleteIcon } from "@chakra-ui/icons";
 
 const formSchema = z.object({
   title: z.string().min(3, {
@@ -180,10 +180,13 @@ export function EditCourse() {
   return (
     <>
       <Header />
+
       <Container maxW="container.lg" py={{ base: "8", md: "12" }}>
         <Box>
           <Heading as="h1" mb="2">Editar curso</Heading>
+
           <Button onClick={() => history.go(-1)} variant="threewygo" mb="8" flex="" gap="2"><ArrowBackIcon /> Voltar</Button>
+
           <form onSubmit={handleSubmit(onSubmit)} className="w-full">
             <FormControl isRequired mb="6">
               <FormLabel>Título</FormLabel>
@@ -241,6 +244,7 @@ export function EditCourse() {
           </form>
         </Box>
       </Container>
+      
       <Footer />
     </>
   )

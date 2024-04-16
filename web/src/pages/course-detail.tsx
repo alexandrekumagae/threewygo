@@ -1,81 +1,41 @@
-import { useEffect, useState } from "react"
-
 import { Link, useParams } from 'react-router-dom';
 
-import { api } from "../lib/api";
-
-import { CourseData } from "../interfaces/course-data"
+import { useFetchCourseInfo } from "../hooks/useFetchCourseInfo";
 
 import { Footer } from "../components/footer";
 import { Header } from "../components/header";
 import { CourseVideos } from "../components/course-videos";
+import { CourseBreadcrumb } from '../components/course-breadcrumb';
 
-import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Container, Grid, Heading, Text, useToast } from "@chakra-ui/react";
+import { Box, Button, Container, Grid, Heading, Text } from "@chakra-ui/react";
 
 export function CourseDetail() {
-  const toast = useToast()
-
   const { slug } = useParams();
-
-  const [course, setCourse] = useState<CourseData>()
-
-  async function getCourseInfo(): Promise<void> {
-    try {
-      const response = await api.get(`/courses/${slug}`)
-
-      if (response.status !== 200) {
-        toast({
-          title: 'Erro ao buscar os dados do curso!',
-          status: 'error',
-          duration: 2000,
-          isClosable: true,
-        })
-      }
-
-      setCourse(response.data.course)
-    } catch (error) {
-      toast({
-        title: 'Erro ao buscar os dados do curso!',
-        status: 'error',
-        duration: 2000,
-        isClosable: true,
-      })
-    }
-  }  
-
-  useEffect(() => {
-    getCourseInfo()
-  }, [])
+  const { course } = useFetchCourseInfo(slug || '');
   
   return (
-    <>
+    <Box>
       <Header />
       
-      <Container maxW="container.lg" py="6" pb={{ base: "8", md: "12" }}>
+      <Container maxW="container.lg" py="6" pb={{ base: "8", md: "12" }} minH="80vh">
         {course ? (
           <>
-              <Grid templateColumns={{ base: "1fr", lg: "1fr 35%" }} gap="8">
-                <Box order={{ base: 2, lg: "unset" }}>
-                  <Breadcrumb mb="4">
-                    <BreadcrumbItem>
-                      <BreadcrumbLink href='/'>Home</BreadcrumbLink>
-                    </BreadcrumbItem>
+            <Grid templateColumns={{ base: "1fr", lg: "1fr 35%" }} gap="8">
+              <Box order={{ base: 2, lg: "unset" }}>
+                <CourseBreadcrumb courseTitle={course.title} />
 
-                    <BreadcrumbItem>
-                      <BreadcrumbLink href='#'>{course.title}</BreadcrumbLink>
-                    </BreadcrumbItem>
-                  </Breadcrumb>
-                  <Box mb="8">
-                    <Heading as="h1" size="xl">{course.title}</Heading>
-                  </Box>
-                  <Box>
-                    <Text>{course.description}</Text>
-                  </Box>
+                <Box mb="8">
+                  <Heading as="h1" size="xl">{course.title}</Heading>
                 </Box>
-                <Box mb={{ base: "4", md: "8" }} order={{ base: 1, lg: "unset" }}>
-                  <CourseVideos videos={course.videos} />
+                <Box>
+                  <Text>{course.description}</Text>
                 </Box>
-              </Grid>
+              </Box>
+
+              <Box mb={{ base: "4", md: "8" }} order={{ base: 1, lg: "unset" }}>
+                <CourseVideos videos={course.videos} />
+              </Box>
+            </Grid>
           </>
         ) : (
           <>
@@ -90,6 +50,6 @@ export function CourseDetail() {
       </Container>
 
       <Footer />
-    </>
+    </Box>
   )
 }

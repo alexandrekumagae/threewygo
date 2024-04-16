@@ -40,8 +40,6 @@ export async function uploadVideos(app: FastifyInstance) {
     } catch (error) {
       console.error('Error uploading files:', error);
       reply.code(500).send({ error: 'Internal server error' });
-    } finally {
-      await client.release();  
     }
   });
 }

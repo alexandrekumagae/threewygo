@@ -38,8 +38,6 @@ export async function updateCourse (app: FastifyInstance) {
       return reply.status(200).send({ id: result.rows[0] })
     } catch (err) {
       return reply.status(500).send({ message: "Ocorreu um erro na solicitação." }) 
-    } finally {
-      await client.release();  
     }
   })
 }

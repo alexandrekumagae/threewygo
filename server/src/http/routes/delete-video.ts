@@ -28,8 +28,6 @@ export async function deleteVideo (app: FastifyInstance) {
       return reply.status(200).send({ message: "Vídeo excluído com sucesso!" })
     } catch (err) {
       return reply.status(500).send({ message: "Ocorreu um erro na solicitação." }) 
-    } finally {
-      await client.release();  
     }
   })
 }

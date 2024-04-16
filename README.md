@@ -68,7 +68,8 @@ O projeto está organizado em duas partes principais:
 #### No servidor:
 
 1. Navegue até o diretório /server.
-2. Execute `npm run test` para rodar os testes unitários.
+2. Cancele a execução da API, caso esteja rodando na porta 3002.
+3. Execute `npm run test` para rodar os testes unitários.
 
 #### Na aplicação web:
 

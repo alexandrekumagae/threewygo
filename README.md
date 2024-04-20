@@ -1,5 +1,7 @@
 # Threewygo - Projeto de Lista de Cursos (Seletivo Twygo)
 
+![Threewygo](.github/cover.png)
+
 ## Descrição do Projeto
 
 Este projeto consiste em uma aplicação web para listar cursos disponíveis, permitindo o cadastro, edição e exclusão de cursos. A tela inicial exibe uma lista de cursos atuais, filtrando-os com base na data de término. Além disso, a aplicação apresenta um formulário de cadastro de cursos e fornece uma maneira de editar e excluir cursos existentes. Também é exibido o tamanho total ocupado pelos vídeos nos cursos.

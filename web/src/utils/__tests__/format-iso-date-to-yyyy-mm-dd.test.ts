@@ -1,4 +1,4 @@
-import { formatIsoDateToYyyyMmDd } from './formatIsoDateToYyyyMmDd';
+import { formatIsoDateToYyyyMmDd } from '../format-iso-date-to-yyyy-mm-dd';
 
 describe('formatIsoDateToYyyyMmDd function', () => {
   test('formats ISO date to YYYY-MM-DD format', () => {

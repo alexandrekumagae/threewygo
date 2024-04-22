@@ -5,7 +5,7 @@ import { RouterProvider } from 'react-router-dom'
 import { router } from './routes'
 
 import { ChakraProvider } from '@chakra-ui/react'
-import customTheme from './customTheme'
+import customTheme from './custom-theme'
 
 import '@fontsource/roboto'
 

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import { MemoryRouter } from 'react-router-dom';
 
-import { CourseDetail } from './course-detail';
+import { CourseDetail } from '../course-detail';
 
 describe('Course Detail page', () => {
   test('should render course detail page without crashing', () => {

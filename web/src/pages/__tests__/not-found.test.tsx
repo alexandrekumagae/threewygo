@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 
 import { MemoryRouter } from 'react-router-dom';
 
-import { NotFound } from './not-found';
+import { NotFound } from '../not-found';
 
 describe('Not found page', () => {
   test('should render not found page', () => {

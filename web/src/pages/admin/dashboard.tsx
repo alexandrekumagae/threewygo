@@ -8,7 +8,7 @@ import { api } from "../../lib/api";
 import { useFetchTotalVideosSize } from "../../hooks/useFetchTotalVideoSize";
 import { useFetchCourses } from "../../hooks/useFetchCourses";
 
-import { formatIsoDateToDdMmYyyy } from "../../utils/formatIsoDateToDdMmYyyy";
+import { formatIsoDateToDdMmYyyy } from "../../utils/format-iso-date-to-dd-mm-yyyy";
 
 import { HeaderAdmin } from "../../components/admin/header-admin";
 import { Footer } from "../../components/footer";

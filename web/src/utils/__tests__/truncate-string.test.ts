@@ -1,4 +1,4 @@
-import { truncateString } from "./truncateString";
+import { truncateString } from "../truncate-string";
 
 describe('truncateString', () => {
   it('should return the original string if its length is less than or equal to the maxLength', () => {

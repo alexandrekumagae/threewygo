@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import { MemoryRouter } from 'react-router-dom';
 
-import { Dashboard } from './dashboard';
+import { Dashboard } from '../admin/dashboard';
 
 describe('Dashboard page', () => {
   test('should render dashboard page without crashing', () => {

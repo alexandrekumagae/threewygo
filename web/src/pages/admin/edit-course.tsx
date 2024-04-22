@@ -11,7 +11,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { CourseData } from "../../interfaces/course-data";
 import { VideoData } from "../../interfaces/video-data";
 
-import { formatIsoDateToYyyyMmDd } from "../../utils/formatIsoDateToYyyyMmDd";
+import { formatIsoDateToYyyyMmDd } from "../../utils/format-iso-date-to-yyyy-mm-dd";
 
 import { Header } from "../../components/header";
 import { Footer } from "../../components/footer";

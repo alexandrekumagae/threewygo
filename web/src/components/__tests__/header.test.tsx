@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import { Header } from './header';
+import { Header } from '../header';
 
 describe('Header Component', () => {
   test('renders header with Threewygo link and Dashboard button', () => {

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import { MemoryRouter } from 'react-router-dom';
 
-import { EditCourse } from './edit-course';
+import { EditCourse } from '../admin/edit-course';
 
 describe('Edit course page', () => {
   test('should render edit course page without crashing', () => {

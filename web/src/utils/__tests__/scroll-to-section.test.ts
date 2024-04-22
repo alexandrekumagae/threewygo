@@ -1,4 +1,4 @@
-import { scrollToSection } from './scrollToSection';
+import { scrollToSection } from '../scroll-to-section';
 
 describe('scrollToSection function', () => {
   test('scrolls to the section when sectionId is valid', () => {

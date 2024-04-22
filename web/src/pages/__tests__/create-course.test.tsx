@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import { MemoryRouter } from 'react-router-dom';
 
-import { CreateCourse } from './create-course';
+import { CreateCourse } from '../admin/create-course';
 
 describe('Create course page', () => {
   test('should render create course page without crashing', () => {

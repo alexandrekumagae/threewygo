@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 
 import { render, screen, fireEvent } from '@testing-library/react';
 
-import { CourseVideos } from '../course-videos';
+import { CourseVideos } from '../courses/course-videos';
 
 const mockVideos = [
   {

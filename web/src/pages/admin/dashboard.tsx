@@ -8,14 +8,14 @@ import { api } from "../../lib/api";
 import { useFetchTotalVideosSize } from "../../hooks/useFetchTotalVideoSize";
 import { useFetchCourses } from "../../hooks/useFetchCourses";
 
-import { formatIsoDateToDdMmYyyy } from "../../utils/format-iso-date-to-dd-mm-yyyy";
-
 import { HeaderAdmin } from "../../components/admin/header-admin";
 import { Footer } from "../../components/footer";
-import { ModalCourseDeleteConfirmation } from "../../components/admin/modal-course-delete-confirmation";
+import { ModalCourseDeleteConfirmation } from "../../components/modals/modal-course-delete-confirmation";
+import { CardVideosStatistics } from "../../components/admin/card-videos-statistics";
+import { CoursesTable } from "../../components/admin/courses-table";
 
-import { Box, Button, Card, CardBody, Container, Flex, Heading, IconButton, Stat, StatLabel, StatNumber, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useDisclosure, useToast } from "@chakra-ui/react";
-import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { Box, Button, Container, Flex, Heading, useDisclosure, useToast } from "@chakra-ui/react";
+import { AddIcon } from "@chakra-ui/icons";
 
 export function Dashboard() {
   const toast = useToast()
@@ -77,14 +77,7 @@ export function Dashboard() {
         </Box>
 
         <Box mb="8">
-          <Card maxW="sm">
-            <CardBody>
-              <Stat>
-                <StatLabel>Tamanho total ocupado pelos vídeos</StatLabel>
-                <StatNumber>{totalVideosSize ? totalVideosSize : '0'} mb</StatNumber>
-              </Stat>
-            </CardBody>
-          </Card>
+          <CardVideosStatistics totalVideosSize={totalVideosSize} />
         </Box>
 
         <Box pb="8">
@@ -93,32 +86,7 @@ export function Dashboard() {
             <Link to="/admin/cursos/novo"><Button flex="" gap="2" mb="8"><AddIcon />Adicionar novo curso</Button></Link>
           </Flex>
 
-          <TableContainer>
-            <Table variant='simple'>
-              <Thead>
-                <Tr>
-                  <Th width="50%">Título</Th>
-                  <Th>Data de Término</Th>
-                  <Th width="10%">Ações</Th>
-                </Tr>
-              </Thead>
-
-              <Tbody>
-                {courses && courses.map(course => (
-                  <Tr key={course.id}>
-                    <Td>{course.title}</Td>
-                    <Td>{formatIsoDateToDdMmYyyy(course.expiration_date)}</Td>
-                    <Td>
-                      <Flex gap="2">
-                        <Link to={`/admin/cursos/editar/${course.slug}`}><IconButton aria-label="Editar curso" icon={<EditIcon />} colorScheme="blue" /></Link>
-                        <IconButton aria-label="Excluir curso" icon={<DeleteIcon />} colorScheme="red" onClick={() => handleOpenDeleteCourseConfirmation(course.id)} />
-                      </Flex>
-                    </Td>
-                  </Tr>
-                ))}
-              </Tbody>
-            </Table>
-          </TableContainer>
+          <CoursesTable courses={courses} handleOpenDeleteCourseConfirmation={handleOpenDeleteCourseConfirmation} />
         </Box>
       </Container>
 

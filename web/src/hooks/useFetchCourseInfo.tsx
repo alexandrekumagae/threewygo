@@ -39,5 +39,5 @@ export function useFetchCourseInfo(slug: string) {
     fetchCourseInfo();
   }, [slug]);
 
-  return { course };
+  return { course, fetchCourseInfo };
 }

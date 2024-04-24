@@ -20,7 +20,8 @@ export function useFetchCourseInfo(slug: string) {
           status: 'error',
           duration: 2000,
           isClosable: true,
-        });      }
+        });
+      }
 
       setCourse(response.data.course);
     } catch (error) {
@@ -30,7 +31,7 @@ export function useFetchCourseInfo(slug: string) {
         duration: 2000,
         isClosable: true,
       });
-      console.error(error);
+      // console.error(error);
       setCourse(null);
     }
   }

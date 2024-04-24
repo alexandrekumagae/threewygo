@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { VideoData } from "../interfaces/video-data"
+import { VideoData } from "../../interfaces/video-data"
 
-import { VITE_VIDEO_PATH } from "../config";
+import { VITE_VIDEO_PATH } from "../../config";
 
 import { AspectRatio, Box, Text, Grid, Modal, ModalBody, ModalContent, ModalOverlay, Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, ModalCloseButton, Heading } from "@chakra-ui/react";
 import { TriangleDownIcon } from "@chakra-ui/icons";

@@ -14,6 +14,7 @@ export function NotFound() {
         <Flex alignItems="center" justifyContent="center" textAlign="center" minH="75vh">
           <Stack>
             <Heading as="h1" mb="4">404 Página não encontrada</Heading>
+            
             <Link to="/">
               <Button variant='threewygo'>
                 Ver cursos

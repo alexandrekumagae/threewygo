@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
-import { CourseData } from "../interfaces/course-data";
+import { CourseData } from "../../interfaces/course-data";
 
-import { truncateString } from "../utils/truncate-string";
-import { formatIsoDateToDdMmYyyy } from "../utils/format-iso-date-to-dd-mm-yyyy";
+import { truncateString } from "../../utils/truncate-string";
+import { formatIsoDateToDdMmYyyy } from "../../utils/format-iso-date-to-dd-mm-yyyy";
 
 import { Card, CardBody, Stack, Heading, CardFooter, Button, Text, Flex } from "@chakra-ui/react";
 import { CalendarIcon } from "@chakra-ui/icons";

@@ -2,7 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import App from '../app';
+import App from './app';
 
 const router = createBrowserRouter([
   {
@@ -11,7 +11,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-jest.mock('../lib/api', () => ({
+jest.mock('./lib/api', () => ({
   api: {
     get: jest.fn().mockResolvedValue({
       status: 200,

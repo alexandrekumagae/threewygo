@@ -4,8 +4,8 @@ import { useFetchCourseInfo } from "../hooks/useFetchCourseInfo";
 
 import { Footer } from "../components/footer";
 import { Header } from "../components/header";
-import { CourseVideos } from "../components/course-videos";
-import { CourseBreadcrumb } from '../components/course-breadcrumb';
+import { CourseVideos } from "../components/courses/course-videos";
+import { CourseBreadcrumb } from '../components/courses/course-breadcrumb';
 
 import { Box, Button, Container, Grid, Heading, Text } from "@chakra-ui/react";
 

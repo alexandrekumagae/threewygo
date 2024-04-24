@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import { Course } from '../course';
+import { Course } from '../courses/course';
 
 const mockCourse = {
   id: '1',
